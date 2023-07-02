@@ -14,8 +14,8 @@ from langchain.vectorstores.faiss import FAISS
 from openai.error import AuthenticationError
 from pypdf import PdfReader
 
-from embeddings import OpenAIEmbeddings
-from prompts import STUFF_PROMPT
+from repository.embeddings import OpenAIEmbeddings
+from repository.prompts import STUFF_PROMPT
 
 from hashlib import md5
 import json
