@@ -18,18 +18,19 @@ from langchain.schema import (
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from components.sidebar import sidebar
 
-
+from utils import config
 from dotenv import load_dotenv
 
 load_dotenv()
 
-sidebar()
-
 # 设置页面标题
-st.title("❤甜言蜜语❤")
+st.set_page_config(page_title="温文尔雅转换器", page_icon="💢", layout="wide")
+st.title("💗温文尔雅转换器💝")
 
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', 'sk-**')
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY', config('OPENAI_API_KEY'))
 chat = ChatOpenAI(openai_api_key=OPENAI_API_KEY, temperature=.7, max_tokens=2000, model_name='gpt-3.5-turbo', streaming=True, callbacks=[StreamingStdOutCallbackHandler()])
+
+sidebar()
 
 # 模拟ChatGPT的响应
 def chatgpt_response(user_message):
@@ -49,7 +50,7 @@ for message in st.session_state.messages:
         st.markdown(message["content"])
 
 # Accept user input
-if user_message := st.chat_input("Keep calm"):
+if user_message := st.chat_input("keep calm……"):
     # Display user message in chat message container
     with st.chat_message("user"):
         print("guy:" + user_message)
